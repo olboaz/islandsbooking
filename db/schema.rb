@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_17_143040) do
+ActiveRecord::Schema.define(version: 2020_02_17_151121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.float "total_price"
+    t.bigint "island_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["island_id"], name: "index_bookings_on_island_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "islands", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.float "price"
+    t.integer "number_of_guests"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_islands_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -31,4 +54,7 @@ ActiveRecord::Schema.define(version: 2020_02_17_143040) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "bookings", "islands"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "islands", "users"
 end
