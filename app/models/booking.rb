@@ -1,9 +1,11 @@
 class Booking < ApplicationRecord
   belongs_to :island
+  belongs_to :user
+
   validates :start_date, :end_date, presence: true
   validate :check_date_from_today, :end_date_after_start_date
   validates :total_price, presence: true, numericality: { greater_than: 0 }
-  validates :island, presence: true
+  validates :island, :user, presence: true
 
 
   private
