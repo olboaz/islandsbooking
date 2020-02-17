@@ -1,1 +1,6 @@
-<%= @islands %>
+<h3>Liste des îles disponibles</h3>
+<hr>
+<% @islands.each do |p|%>
+  <p> <%= p.name %> </p>
+  <p> <%= p.address %> </p>
+<% end%>
