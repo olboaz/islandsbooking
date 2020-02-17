@@ -1,2 +1,11 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Réservez l'île de vos rêves !</h1>
+
+<%= form_with url: islands_path, method: "GET", local: true do |f| %>
+  <%= f.label :"Nom de l'île :" %>
+  <%= f.text_field :name %>
+  <%= f.label :"Arrivée :" %>
+  <%= f.date_field :start_date, :value => Time.now.strftime('%Y-%m-%d')%>
+  <%= f.label :"Départ :" %>
+  <%= f.date_field :end_date, :value => Date.today+1 %>
+  <%= f.submit "Rechercher", class: "btn btn-primary" %>
+<% end %>
