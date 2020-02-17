@@ -1,11 +1,42 @@
-<h1>Réservez l'île de vos rêves !</h1>
+<h1 class="text-center">Book your dream island to stay !</h1>
 
-<%= form_with url: islands_path, method: "GET", local: true do |f| %>
-  <%= f.label :"Nom de l'île :" %>
-  <%= f.text_field :name %>
-  <%= f.label :"Arrivée :" %>
-  <%= f.date_field :start_date, :value => Time.now.strftime('%Y-%m-%d')%>
-  <%= f.label :"Départ :" %>
-  <%= f.date_field :end_date, :value => Date.today+1 %>
-  <%= f.submit "Rechercher", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+  <%= form_with url: islands_path, method: "GET", local: true do |f| %>
+    <form class="col-12 col-md-4">
+      <div class="form-group">
+        <%= f.label :"Island name :" %>
+        <%= f.text_field :name, class: "form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :"CHECK-IN :" %>
+        <%= f.date_field :start_date, :value => Time.now.strftime('%Y-%m-%d'), class: "form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :"CHECK-OUT :" %>
+        <%= f.date_field :end_date, :value => Date.today+1, class: "form-control" %>
+      </div>
+
+      <%= f.submit "Search", class: "btn btn-primary" %>
+    </form>
+  <% end %>
+</div>
+
+<div class="container">
+  <h2 class="text-center">Last island available</h2>
+  <div class="cards">
+    <% @islands.last(6).each do |island| %>
+      <%= link_to island_path(island) do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),
+          url('https://images.unsplash.com/photo-1543051824-ebd4aff3001b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1334&q=80');">
+          <h2><%= island.name.capitalize %> </h2>
+        </div>
+        <div>
+          <p class="fas fa-user-alt"> <%= island.number_of_guests %> </p>
+          <p class="fas fa-euro-sign"> <%= island.price %> </p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
