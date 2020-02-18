@@ -2,6 +2,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
+    authorize @booking
     nb_of_days = params[:booking][:nb_of_nights].to_i
     @booking.end_date = @booking.start_date + nb_of_days
     @booking.user = current_user
