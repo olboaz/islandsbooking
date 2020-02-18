@@ -1,6 +1,31 @@
-<h2>Island information :</h2>
-<p>Name : <%= @island.name %></p>
-<p>Address : <%= @island.address %></p>
-<p>Number of guests : <%= @island.number_of_guests %></p>
-<p>Price : <%= @island.price %></p>
-<p>Landlord : <%= @island.user.username %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>Island information :</h1>
+      <p>Name : <%= @island.name %></p>
+      <p>Address : <%= @island.address %></p>
+      <p>Number of guests : <%= @island.number_of_guests %></p>
+      <p data-price=<%= @island.price%> id="price">Price : <%= @island.price %></p>
+      <p>Landlord : <%= @island.user.username %></p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>Book this island!</h2>
+      <%= form_with model: [current_user, @booking], local: true, id: 'booking-form' do |f| %>
+        <%= f.label :start_date %>
+        <%= f.date_field :start_date, value: Date.today, id: "start-date-booking" %>
+        <%= f.label :number_of_nights %>
+        <%= f.number_field :nb_of_nights, placeholder: 'Nb of nights', min: 0 %>
+        <%= f.hidden_field :island_id, value: params[:id] %>
+        <%= f.label :total_price %>
+        <%= f.text_field :total_price, id: 'total-price', readonly: true, value: 0 %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
