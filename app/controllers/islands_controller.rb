@@ -30,6 +30,7 @@ class IslandsController < ApplicationController
 
   def update
     @island = Island.find(params[:id])
+    @island.user = current_user
     @island.update(island_params)
     if @island.save
       redirect_to island_path(@island)
