@@ -15,7 +15,9 @@
           <%= link_to "€ EUR", "#", class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "List your Island", new_island_path, class: "nav-link btn btn-success ml-3" %>
+          <% if policy(Island).create? %>
+            <%= link_to "List your Island", new_island_path, class: "nav-link btn btn-success ml-3" %>
+          <% end %>
         </li>
         <li class="nav-item dropdown ml-4">
           <%= image_tag "https://cdn.dribbble.com/users/41854/screenshots/3262177/islands_4d.gif", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
