@@ -8,8 +8,8 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to current_user
     else
-      @island = Island.find(params[:booking][:island_id])
       flash[:notice] = "The booking could not be completed."
+      redirect_to island_path(params[:booking][:island_id])
     end
   end
 

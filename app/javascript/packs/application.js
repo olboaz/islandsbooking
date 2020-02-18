@@ -12,6 +12,6 @@ const nbOfNightsInput = document.getElementById('booking_nb_of_nights');
 const bookingForm = document.getElementById('booking-form');
 
 if (bookingForm) {
-  nbOfNightsInput.addEventListener('keyup', updatePrice);
+  nbOfNightsInput.addEventListener('input', updatePrice);
 };
 
