@@ -36,24 +36,23 @@
     <% @islands.last(6).each do |island| %>
       <%= link_to island_path(island) do %>
         <% if island.photo.attached?%>
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.2)),
             url('<%= cl_image_path island.photo.key, height: 300, width: 400, crop: :fill %>');">
-            <h2><%= island.name.capitalize %> </h2>
+            <h2 class="floating"><%= island.name.capitalize %> </h2>
           </div>
 
         <% else %>
 
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.9)),
             url('https://source.unsplash.com/1600x900/?island-<%=island.name%>');">
-            <h2><%= island.name.capitalize %> </h2>
+            <h2 class="card-title floating"><%= island.name.capitalize %> </h2>
+            <%= image_tag "island.png", class:"island-image"%>
+            <p class="fas fa-user-alt number_of_guests"> <%= island.number_of_guests %> </p>
+            <p class="price">€ <%= island.price %> </p>
           </div>
 
         <% end %>
 
-        <div>
-          <p class="fas fa-user-alt"> <%= island.number_of_guests %> </p>
-          <p class="fas fa-euro-sign"> <%= island.price %> </p>
-        </div>
 
       <% end %>
     <% end %>
