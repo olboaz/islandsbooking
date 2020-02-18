@@ -51,3 +51,4 @@ class IslandsController < ApplicationController
     params.require(:island).permit(:name, :address, :price, :number_of_guests, :user_id)
   end
 end
+
