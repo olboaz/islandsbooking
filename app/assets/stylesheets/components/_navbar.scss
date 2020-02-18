@@ -1,6 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  position: absolute;
+  width: 100%;
+  background: rgba(255,255,255,0);
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -15,7 +17,7 @@ li.nav-item.dropdown {
   cursor: pointer;
 }
 
-a.nav-link.btn-success {
+a.nav-link {
   font-weight: bold;
   color: white !important;
 }
@@ -29,5 +31,5 @@ div.collapse.navbar-collapse {
 }
 
 #navbarDropdown {
-  box-shadow: 1px 1px 4px $secondary;
+  box-shadow: 2px 2px 6px $secondary
 }
