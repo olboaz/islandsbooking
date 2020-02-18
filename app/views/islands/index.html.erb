@@ -5,7 +5,7 @@
       <%= link_to island_path(island) do %>
         <% if island.photo.attached?%>
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),
-            url('<%= cl_image_path island.photo.key, height: 300, width: 400, crop: :fill %>');">
+            url('<%= cl_image_path island.photo.key, crop: :fill %>');">
             <h2><%= island.name.capitalize %> </h2>
           </div>
 
