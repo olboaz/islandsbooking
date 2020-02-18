@@ -44,4 +44,11 @@
       <% end %>
     </div>
   </div>
+
+  <% if policy(@island).edit? %>
+    <%= link_to "Update", edit_island_path(@island) %>
+  <% end %>
+  <% if policy(@island).destroy? %>
+    <%= link_to "Delete", island_path(@island), method: :delete, data: {confirm: "Are you sure ?"} %>
+  <% end %>
 </div>
