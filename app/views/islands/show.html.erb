@@ -1,6 +1,13 @@
-<h2>Island information :</h2>
-<p>Name : <%= @island.name %></p>
-<p>Address : <%= @island.address %></p>
-<p>Number of guests : <%= @island.number_of_guests %></p>
-<p>Price : <%= @island.price %></p>
-<p>Landlord : <%= @island.user.username %></p>
+<div class="wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    url('https://source.unsplash.com/1600x900/?island-<%=@island.name%>')">
+  <h1><%= @island.name.capitalize %></h1>
+</div>
+
+<div class="container">
+  <h2>Island information :</h2>
+  <p>Name : <%= @island.name %></p>
+  <p>Address : <%= @island.address %></p>
+  <p>Number of guests : <%= @island.number_of_guests %></p>
+  <p>Price : <%= @island.price %></p>
+  <p>Landlord : <%= @island.user.username %></p>
+</div>
