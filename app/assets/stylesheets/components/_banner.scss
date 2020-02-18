@@ -1,4 +1,4 @@
-.wrapper {
+.banner {
     height: 350px;
     width: 100%;
     background-repeat: no-repeat;
@@ -8,4 +8,35 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+#home-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 150px 0;
+  height: 100vh;
+  #form {
+    background: white;
+    padding: 2em 3em;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12) !important;
+    border-radius: 8px;
+    input {
+      font-weight: bold;
+    }
+  }
+}
+
+#home-banner h1 {
+  margin: 0;
+  color: $secondary;
+  // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+#home-banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
