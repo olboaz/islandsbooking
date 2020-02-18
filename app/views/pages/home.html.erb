@@ -38,7 +38,6 @@
         <% if island.photo.attached?%>
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.9)),
             url('<%= cl_image_path island.photo.key, height: 300, width: 400, crop: :fill %>');">
-          </div>
         <% else %>
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.9)),
             url('https://source.unsplash.com/1600x900/?island-<%=island.name%>');">
