@@ -30,14 +30,16 @@
     <div class="col-12">
       <h2>Book this island!</h2>
       <%= form_with model: [current_user, @booking], local: true, id: 'booking-form' do |f| %>
-        <%= f.label :start_date %>
-        <%= f.date_field :start_date, value: Date.today, id: "start-date-booking" %>
-        <%= f.label :number_of_nights %>
-        <%= f.number_field :nb_of_nights, placeholder: 'Nb of nights', min: 0 %>
-        <%= f.hidden_field :island_id, value: params[:id] %>
-        <%= f.label :total_price %>
-        <%= f.text_field :total_price, id: 'total-price', readonly: true, value: 0 %>
-        <%= f.submit %>
+        <div class="form-inline my-3">
+          <%= f.label :start_date, class: 'mr-3'%>
+          <%= f.date_field :start_date, value: Date.today, id: "start-date-booking", class: 'form-control mr-3' %>
+          <%= f.label :number_of_nights, class: 'mr-3' %>
+          <%= f.number_field :nb_of_nights, placeholder: 'Nb of nights', min: 0, class: 'form-control mr-3' %>
+          <%= f.hidden_field :island_id, value: params[:id] %>
+          <%= f.label :total_price, class: 'mr-3' %>
+          <%= f.text_field :total_price, id: 'total-price', readonly: true, value: 0, class: 'form-control mr-3' %>
+          <%= f.submit 'Book', class: 'btn btn-primary' %>
+        </div>
       <% end %>
     </div>
   </div>
