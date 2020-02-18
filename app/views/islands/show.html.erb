@@ -1,6 +1,15 @@
-<div class="wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-    url('https://source.unsplash.com/1600x900/?island-<%=@island.name%>')">
-  <h1><%= @island.name.capitalize %></h1>
+<div class="container">
+  <% if @island.photo.attached?%>
+    <div class="wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+      url('<%= cl_image_path @island.photo.key, height: 300, width: 400, crop: :fill %>')">
+      <h1><%= @island.name.capitalize %></h1>
+    </div>
+  <% else %>
+    <div class="wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+      url('https://source.unsplash.com/1600x900/?island-<%=@island.name%>')">
+      <h1><%= @island.name.capitalize %></h1>
+    </div>
+  <% end %>
 </div>
 
 <div class="container">
