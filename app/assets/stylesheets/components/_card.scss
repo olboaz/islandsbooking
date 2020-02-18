@@ -4,6 +4,19 @@
   grid-gap: 16px;
 }
 
+.cards-booking {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .card-booking {
+    width: 48%;
+    background: white;
+    padding: 10px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+  }
+  
+}
+
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
   .cards {
@@ -12,10 +25,17 @@
 }
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {
+@media (max-width: 576px) {
   .cards {
     grid-template-columns: 1fr;
   }
+  .cards-booking {
+    display: block;
+    .card-booking {
+      width: 100%;
+    }
+  }
+
 }
 
 // Medium devices (tablets, 768px and up)
