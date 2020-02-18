@@ -10,3 +10,24 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+li.nav-item.dropdown {
+  cursor: pointer;
+}
+
+a.nav-link.btn-success {
+  font-weight: bold;
+  color: white !important;
+}
+
+div.collapse.navbar-collapse {
+  position: relative;
+}
+
+#login {
+  border-left: 1px solid lightgrey;
+}
+
+#navbarDropdown {
+  box-shadow: 1px 1px 4px $secondary;
+}
