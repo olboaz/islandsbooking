@@ -1,7 +1,7 @@
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
+  grid-gap: 32px;
 }
 
 // Smallest device
@@ -40,9 +40,10 @@
 }
 
 .card-category {
+  position: relative;
   background-size: cover;
   background-position: center;
-  height: 180px;
+  height: 240px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,6 +51,46 @@
   font-size: 24px;
   font-weight: bold;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius : 30px;
+}
+
+.card-title {
+    margin-bottom: 1.75rem;
+}
+
+.island-image {
+    position: absolute;
+    bottom: -45px;
+    width: 200px;
+    text-align: center;
+    filter: brightness(0.8);
+}
+
+.number_of_guests {
+    position: absolute;
+    bottom: 8px;
+    left: 24px;
+    font-family: Muli;
+    font-size: 16px;
+}
+
+.price {
+    position: absolute;
+    bottom: 8px;
+    right: 24px;
+    font-size: 16px;
+}
+
+.floating {
+    animation-name: floating;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes floating {
+    from { transform: translate(0,  0px); }
+    65%  { transform: translate(0, 5px); }
+    to   { transform: translate(0, -0px); }
 }
