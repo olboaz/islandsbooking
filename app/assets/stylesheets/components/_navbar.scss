@@ -1,8 +1,9 @@
 .navbar-lewagon {
   justify-content: space-between;
-  position: absolute;
+  // position: absolute;
   width: 100%;
-  background: rgba(255,255,255,0);
+  // background: rgba(255,255,255,0);
+  background: white;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -20,6 +21,10 @@ li.nav-item.dropdown {
 a.nav-link {
   font-weight: bold;
   color: white !important;
+}
+
+#login > a {
+  color: rgba(0, 0, 0, 0.7) !important;
 }
 
 div.collapse.navbar-collapse {
