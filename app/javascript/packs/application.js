@@ -7,6 +7,7 @@ import "bootstrap";
 import { loadDynamicBannerText } from '../components/homebanner';
 import { toggleDropdownMenu } from "../components/navbar";
 import { updatePrice } from '../custom/booking_form';
+import { initAutocomplete } from '../plugins/init_autocomplete'
 
 toggleDropdownMenu();
 
@@ -19,5 +20,6 @@ document.addEventListener('turbolinks:load', () => {
   if (bookingForm) {
     nbOfNightsInput.addEventListener('input', updatePrice);
   };
+  init_autocompleteutocomplete();
 });
 
