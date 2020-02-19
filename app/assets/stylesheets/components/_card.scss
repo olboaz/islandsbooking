@@ -6,10 +6,11 @@
 
 .cards-booking {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   .card-booking {
-    width: 48%;
+    width: 40%;
     background: white;
     padding: 10px;
     box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
