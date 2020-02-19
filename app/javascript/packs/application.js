@@ -8,18 +8,18 @@ import { loadDynamicBannerText } from '../components/homebanner';
 import { toggleDropdownMenu } from "../components/navbar";
 import { updatePrice } from '../custom/booking_form';
 import { initAutocomplete } from '../plugins/init_autocomplete'
-
-toggleDropdownMenu();
+import { initFlatpickr } from '../plugins/init_flatpickr';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your JS functions here
-  // [...]
   loadDynamicBannerText();
+  toggleDropdownMenu();
+  initFlatpickr();
+  initAutocomplete();
+
   const nbOfNightsInput = document.getElementById('booking_nb_of_nights');
   const bookingForm = document.getElementById('booking-form');
   if (bookingForm) {
     nbOfNightsInput.addEventListener('input', updatePrice);
   };
-  init_autocompleteutocomplete();
 });
 
