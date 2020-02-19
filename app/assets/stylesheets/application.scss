@@ -12,3 +12,7 @@
 @import "components/index";
 @import "components/typedjs";
 @import "pages/index";
+
+.content-wrapper {
+  min-height: calc(100vh - 180px);
+}
