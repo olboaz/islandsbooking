@@ -39,7 +39,11 @@
         </li>
       -->
         <li class="nav-item" id="login">
-          <%= link_to "Login", new_user_session_path, class: "nav-link ml-3" %>
+          <% if current_page?('/') %>
+            <%= link_to "Login", new_user_session_path, class: "nav-link ml-3", style: 'color:#FFFFFF !important;' %>
+          <% else %>
+            <%= link_to "Login", new_user_session_path, class: "nav-link ml-3" %>
+          <% end %>
         </li>
         <li class="nav-item" id="signup">
           <%= link_to "Sign up", new_user_registration_path, class: "nav-link btn btn-success ml-3" %>
