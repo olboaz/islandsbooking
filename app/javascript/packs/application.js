@@ -14,12 +14,12 @@ document.addEventListener('turbolinks:load', () => {
   // Call your JS functions here
   // [...]
   loadDynamicBannerText();
+});
+
 const nbOfNightsInput = document.getElementById('booking_nb_of_nights');
 const bookingForm = document.getElementById('booking-form');
 
 if (bookingForm) {
   nbOfNightsInput.addEventListener('input', updatePrice);
 };
-});
-
 
