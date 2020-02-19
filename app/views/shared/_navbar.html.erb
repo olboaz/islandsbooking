@@ -1,4 +1,8 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar">
+<% if current_page?('/') %>
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar" style="background-color:#00b0be">
+<% else %>
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar">
+<% end %>
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png" %>
   <% end %>
