@@ -8,4 +8,10 @@ class Island < ApplicationRecord
   validates :number_of_guests, presence: true, numericality: { only_integer: true }
   validates :price, presence: true, numericality: { greater_than: 0 }
   validates :user, presence: true
+
+  def unavailable_dates
+    bookings.pluck(:start_date, :end_date).map do |range|
+      { from: range[0], to: range[1] }
+    end
+  end
 end

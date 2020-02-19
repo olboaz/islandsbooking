@@ -7,13 +7,13 @@ import "bootstrap";
 import { loadDynamicBannerText } from '../components/homebanner';
 import { toggleDropdownMenu } from "../components/navbar";
 import { updatePrice } from '../custom/booking_form';
-
-toggleDropdownMenu();
+import { initFlatpickr } from '../plugins/init_flatpickr';
 
 document.addEventListener('turbolinks:load', () => {
-  // Call your JS functions here
-  // [...]
   loadDynamicBannerText();
+  toggleDropdownMenu();
+  initFlatpickr();
+
   const nbOfNightsInput = document.getElementById('booking_nb_of_nights');
   const bookingForm = document.getElementById('booking-form');
   if (bookingForm) {
