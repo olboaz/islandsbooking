@@ -18,17 +18,19 @@
     <div class="row">
       <div class="col-12">
         <h2>Island information</h2>
-        <p>Name : <%= @island.name %></p>
-        <p>Address : <%= @island.address %></p>
-        <p>Number of guests : <%= @island.number_of_guests %></p>
-        <p data-price=<%= @island.price%> id="price">Price : <%= @island.price %></p>
-        <p>Landlord : <%= @island.user.username %></p>
+        <p><span class="badge badge-primary">Name</span> <%= @island.name %></p>
+        <p><span class="badge badge-primary">Address</span> <%= @island.address %></p>
+        <p><span class="badge badge-primary">Number of guests</span> <%= @island.number_of_guests %></p>
+        <p data-price=<%= @island.price%> id="price"><span class="badge badge-primary">Price ( € / day)</span> <%= @island.price %></p>
+        <p><span class="badge badge-primary">Host</span> <%= @island.user.username %></p>
         <% if policy(@island).edit? %>
           <%= link_to "Update", edit_island_path(@island), class: 'btn btn-primary' %>
         <% end %>
         <% if policy(@island).destroy? %>
           <%= link_to "Delete", island_path(@island), method: :delete, data: {confirm: "Are you sure ?"} , class: 'btn btn-danger'%>
         <% end %>
+        <h2>Description</h2>
+        <p><%= @island.description %></p>
       </div>
     </div>
   </div>
