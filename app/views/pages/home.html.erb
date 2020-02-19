@@ -29,9 +29,8 @@
     </div>
   </div>
 </div>
-<div style="background: linear-gradient(#00B1BE, white)">
 <div class="container">
-  <h1 class="text-center mb-5 floating" style="color:white"><strong>Dive in !</strong></h1>
+  <h1 class="text-center m-5 floating" style="color: #6C757D"><strong>Dive in !</strong></h1>
   <div class="cards">
     <% @islands.last(6).each do |island| %>
       <%= link_to island_path(island) do %>
@@ -42,13 +41,12 @@
           <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.9)),
             url('https://source.unsplash.com/1600x900/?island-<%=island.name%>');">
         <% end %>
-            <h2 class="card-title floating"><%= island.name.capitalize %> </h2>
+            <h2 class="card-title"><%= island.name.capitalize %> </h2>
             <p class="number_of_guests"><i class="fas fa-user-friends"></i> <%= island.number_of_guests %> </p>
             <p class="price">€ <%= island.price.round %> </p>
           </div>
       <% end %>
     <% end %>
   </div>
-</div>
 </div>
 
