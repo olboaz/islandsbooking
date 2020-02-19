@@ -13,19 +13,9 @@
   <% end %>
 </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <h1>Island information :</h1>
-      <p>Name : <%= @island.name %></p>
-      <p>Address : <%= @island.address %></p>
-      <p>Number of guests : <%= @island.number_of_guests %></p>
-      <p data-price=<%= @island.price%> id="price">Price : <%= @island.price %></p>
-      <p>Landlord : <%= @island.user.username %></p>
-    </div>
-  </div>
-</div>
+<div class="main-container-center">
 
+<<<<<<< HEAD
 <div class="container">
   <div class="row">
     <div class="col-12">
@@ -47,15 +37,48 @@
           <% end %>
         <% else %>
           <%= link_to "Please log in to book", new_user_session_path, class: "btn btn-primary" %>
+=======
+  <div class="container main-container-item-white">
+    <div class="row">
+      <div class="col-12">
+        <h2>Island information</h2>
+        <p>Name : <%= @island.name %></p>
+        <p>Address : <%= @island.address %></p>
+        <p>Number of guests : <%= @island.number_of_guests %></p>
+        <p data-price=<%= @island.price%> id="price">Price : <%= @island.price %></p>
+        <p>Landlord : <%= @island.user.username %></p>
+        <% if policy(@island).edit? %>
+        <%= link_to "Update", edit_island_path(@island) %>
         <% end %>
-      <% end %>
+        <% if policy(@island).destroy? %>
+          <%= link_to "Delete", island_path(@island), method: :delete, data: {confirm: "Are you sure ?"} %>
+>>>>>>> f3c9dcc81d7fed9bade1cf4897512a2670298d94
+        <% end %>
+      </div>
     </div>
   </div>
 
-  <% if policy(@island).edit? %>
-    <%= link_to "Update", edit_island_path(@island) %>
+  <% unless policy(@island).update? %>
+    <div class="container main-container-item-white">
+      <div class="row">
+        <div class="col-12">
+            <h2>Book this island!</h2>
+            <%= form_with model: [current_user, @booking], local: true, id: 'booking-form' do |f| %>
+              <div class="form-group my-3">
+                <%= f.label :start_date, class: 'my-1'%>
+                <%= f.date_field :start_date, value: Date.today, id: "start-date-booking", class: 'form-control my-1' %>
+                <%= f.label :number_of_nights, class: 'my-1' %>
+                <%= f.number_field :nb_of_nights, placeholder: 'Nb of nights', min: 0, class: 'form-control my-1' %>
+                <%= f.hidden_field :island_id, value: params[:id] %>
+                <%= f.label :total_price, class: 'my-1' %>
+                <%= f.text_field :total_price, id: 'total-price', readonly: true, value: 0, class: 'form-control my-1' %>
+                <%= f.submit 'Book', class: 'btn btn-primary my-3', id: 'booking-submit', disabled: true %>
+              </div>
+            <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
-  <% if policy(@island).destroy? %>
-    <%= link_to "Delete", island_path(@island), method: :delete, data: {confirm: "Are you sure ?"} %>
-  <% end %>
+  
 </div>
+

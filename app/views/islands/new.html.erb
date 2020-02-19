@@ -1,9 +1,16 @@
-<%= simple_form_for(@island) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address %>
-  <%= f.input :number_of_guests %>
-  <%= f.input :price %>
-  <%= f.input :available %>
-  <%= f.input :photo, as: :file %>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="my-3">Add your island!</h1>
+      <%= simple_form_for(@island) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :address %>
+        <%= f.input :number_of_guests %>
+        <%= f.input :price %>
+        <%= f.input :available %>
+        <%= f.input :photo, as: :file %>
+        <%= f.submit class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
