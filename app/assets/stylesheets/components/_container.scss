@@ -1,0 +1,24 @@
+.main-container-center {
+  display: flex;
+  align-items: top;
+}
+
+.main-container-item-white {
+  background: white;
+  padding: 20px;
+  margin: 10px;
+}
+
+@media (max-width: 576px) {
+  .main-container-center {
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-container-item-white {
+    background: white;
+    width: 95%;
+    padding: 10px;
+    margin: 2px;
+  }
+  
+}
