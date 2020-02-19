@@ -1,9 +1,10 @@
 class IslandsController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [ :index, :show ]
 
   def index
     @islands = policy_scope(Island).where("lower(name) LIKE ?","%#{params[:name].downcase}%")
+
   end
 
   def show
