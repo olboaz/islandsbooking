@@ -1,5 +1,11 @@
 class BookingsController < ApplicationController
 
+  def new
+    @booking = Booking.new
+    authorize @booking
+    redirect_to island_path(params[:island_id])
+  end
+
   def create
     @booking = Booking.new(booking_params)
     authorize @booking
