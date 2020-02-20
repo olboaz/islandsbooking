@@ -29,8 +29,7 @@
         <% if policy(@island).destroy? %>
           <%= link_to "Delete", island_path(@island), method: :delete, data: {confirm: "Are you sure ?"} , class: 'btn btn-danger'%>
         <% end %>
-        <h2>Description</h2>
-        <p><%= @island.description %></p>
+        <p><span class="badge badge-primary">Description</span> <%= @island.description %></p>
       </div>
     </div>
   </div>
