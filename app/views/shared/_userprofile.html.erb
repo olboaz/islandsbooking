@@ -45,18 +45,18 @@
                   <li><span class="badge badge-primary">Until</span> <%= booking.end_date.strftime("%b %d, %Y") %></li>
                   <li><span class="badge badge-primary">Nb of nights</span> <%= (booking.end_date - booking.start_date).to_i %></li>
                   <li><span class="badge badge-primary">Total price</span> <%= booking.total_price %> €</li>
-                  <% if booking.island.reviews.count == 0 %>
-                    <li><%= link_to "> Rate this island", new_island_review_path(booking.island) %></li>
+                  <% if booking.reviews.count == 0 %>
+                    <li><%= link_to "> Rate this island", new_booking_review_path(booking) %></li>
                   <% end %>
                 </ul>
                 <div>
-                  <% if booking.island.reviews.count != 0 %>
+                  <% if booking.reviews.count != 0 %>
                   <h5>
                     Your comment on the island
                   </h5>
                   <ul class="list-unstyled">
-                    <li>Your rating : <%= icon('fas', 'star', class: 'star-rating') * (booking.island.reviews.first.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - booking.island.reviews.first.rating) %></li>
-                    <li>Your comment : <%= booking.island.reviews.first.content %></li>
+                    <li>Your rating : <%= icon('fas', 'star', class: 'star-rating') * (booking.reviews.first.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - booking.reviews.first.rating) %></li>
+                    <li>Your comment : <%= booking.reviews.first.content %></li>
                   </ul>
                   <% end %>
                 </div>
