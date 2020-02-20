@@ -22,10 +22,9 @@
         <% else %>
           <div>
             <ul class="list-unstyled">
-              <li><span class="badge badge-primary">Username</span> <%= @user.username %></li>
-              <li><span class="badge badge-primary">Email</span> <%= @user.email %></li>
-              <li><span class="badge badge-primary">First name</span> <%= @user.first_name %></li>
-              <li><span class="badge badge-primary">Last name</span> <%= @user.last_name %></li>
+              <li class="d-flex align-items-center"><i class="fas fa-user icon-user-profile"></i><%= @user.username %></li>
+              <li class="d-flex align-items-center"><i class="far fa-envelope icon-user-profile"></i>Email<%= @user.email %></li>
+              <li class="d-flex align-items-center"><i class="far fa-id-badge icon-user-profile"></i><%= "#{@user.first_name} #{@user.last_name}" %></li>
             </ul>
           </div>
         <% end %>
@@ -34,17 +33,16 @@
         <div class="bg-white p-3 my-3">
           <h2 class="mb-3">My bookings</h2>
           <div class="cards-booking">
-            <% @user.bookings.each do |booking| %>
+            <% @user.bookings.order(created_at: :desc).each do |booking| %>
             <div class="card-booking">
               <div class="card-booking-infos">
                 <div class="d-flex align-items-baseline">
                   <h3><%= booking.island.name %></h3>
                 </div>
                 <ul class="list-unstyled">
-                  <li><span class="badge badge-primary">From</span> <%= booking.start_date.strftime("%b %d, %Y") %></li>
-                  <li><span class="badge badge-primary">Until</span> <%= booking.end_date.strftime("%b %d, %Y") %></li>
-                  <li><span class="badge badge-primary">Nb of nights</span> <%= (booking.end_date - booking.start_date).to_i %></li>
-                  <li><span class="badge badge-primary">Total price</span> <%= booking.total_price %> €</li>
+                  <li class="d-flex align-items-center"><i class="far fa-calendar-alt icon-user-profile"></i>From <%= "#{booking.start_date.strftime("%b %d, %Y")} until #{booking.end_date.strftime("%b %d, %Y")}" %></li>
+                  <li class="d-flex align-items-center"><i class="fas fa-bed icon-user-profile"></i> <%= (booking.end_date - booking.start_date).to_i %></li>
+                  <li class="d-flex align-items-center"><i class="far fa-money-bill-alt icon-user-profile"></i> <%= booking.total_price %> €</li>
                   <% if booking.island.reviews.count == 0 %>
                     <li><%= link_to "> Rate this island", new_island_review_path(booking.island) %></li>
                   <% end %>
@@ -61,6 +59,11 @@
                   <% end %>
                 </div>
               </div>
+              <% if booking.status == "pending" %>
+                  <i class="far fa-clock icon-top-right icon-yellow"></i>
+                <% else %>
+                  <i class="fas fa-check-circle icon-top-right icon-green"></i>
+              <% end %>
             </div>
           <% end %>
           </div>
