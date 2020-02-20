@@ -1,6 +1,6 @@
 class Island < ApplicationRecord
   has_many :bookings
-  has_many :reviews
+  has_many :ratings, through: :bookings
   belongs_to :user
   has_one_attached :photo
 

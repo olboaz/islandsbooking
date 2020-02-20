@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :island
   belongs_to :user
+  has_many :reviews, dependent: :destroy
 
   STATUS = ['pending', 'refused', 'accepted']
   validates :status, inclusion: { in: STATUS }

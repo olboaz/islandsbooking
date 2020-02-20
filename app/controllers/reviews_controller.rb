@@ -1,18 +1,18 @@
 class ReviewsController < ApplicationController
   def new
-    @island = Island.find(params[:island_id])
+    @booking = Booking.find(params[:booking_id])
     @review = Review.new
     authorize @review
   end
 
   def create
-    @island = Island.find(params[:island_id])
+    @booking = Booking.find(params[:booking_id])
     @review = Review.new(review_params)
     authorize @review
-    @review.island = @island
-    @user = current_user
+    @review.booking = @booking
+    @review.user = current_user
     if @review.save
-      redirect_to user_path(@user)
+      redirect_to user_path(current_user)
     else
       flash[:alert] = "Something went wrong."
       render :new
