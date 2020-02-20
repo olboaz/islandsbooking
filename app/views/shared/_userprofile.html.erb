@@ -39,16 +39,6 @@
               <div class="card-booking-infos">
                 <div class="d-flex align-items-baseline">
                   <h3><%= booking.island.name %></h3>
-                  <% unless booking.island.reviews.count == 0 %>
-                    <span>
-                      <% sum = 0 %>
-                      <% booking.island.reviews.each do |review| %>
-                        <% sum += review.rating %>
-                      <% end %>
-                      <% average = (sum / booking.island.reviews.count.to_f).round(1) %>
-                      <%= average %>/5
-                    </span>
-                  <% end %>
                 </div>
                 <ul class="list-unstyled">
                   <li><span class="badge badge-primary">From</span> <%= booking.start_date.strftime("%b %d, %Y") %></li>
@@ -56,9 +46,20 @@
                   <li><span class="badge badge-primary">Nb of nights</span> <%= (booking.end_date - booking.start_date).to_i %></li>
                   <li><span class="badge badge-primary">Total price</span> <%= booking.total_price %> €</li>
                   <% if booking.island.reviews.count == 0 %>
-                    <li><%= link_to "Rate your booking", new_island_review_path(booking.island) %></li>
+                    <li><%= link_to "> Rate this island", new_island_review_path(booking.island) %></li>
                   <% end %>
                 </ul>
+                <div>
+                  <% if booking.island.reviews.count != 0 %>
+                  <h5>
+                    Your comment on the island
+                  </h5>
+                  <ul class="list-unstyled">
+                    <li>Your rating : <%= icon('fas', 'star', class: 'star-rating') * (booking.island.reviews.first.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - booking.island.reviews.first.rating) %></li>
+                    <li>Your comment : <%= booking.island.reviews.first.content %></li>
+                  </ul>
+                  <% end %>
+                </div>
               </div>
             </div>
           <% end %>
