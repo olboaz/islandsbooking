@@ -81,7 +81,11 @@
                   <li><span class="badge badge-primary">Place</span> <%= island.address.capitalize %></li>
                   <li><span class="badge badge-primary">Number of guests</span> <%= island.number_of_guests %></li>
                   <li><span class="badge badge-primary">Price (€ / day)</span> <%= island.price %></li>
-                  <li><span class="badge badge-primary">Description</span> <%= "#{island.description.first(100)}..." %></li>
+                  <% if island.description.nil? %>
+                    <li><span class="badge badge-primary">Description</span> <%= island.description %></li>
+                  <% else %>
+                    <li><span class="badge badge-primary">Description</span> <%= "#{island.description.first(100)}..." %></li>
+                  <% end  %>
                 </ul>
               </div>
             </div>
