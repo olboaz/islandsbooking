@@ -8,7 +8,6 @@ const getDaysDiff = (selectedDates) => {
   }
 }
 
-
 const setNbNights = (countNights, value) => {
   countNights.setAttribute("value", value);
 }
@@ -53,7 +52,6 @@ const initFlatpickr = () => {
       }
     });
   };
-  
 };
 
 export { initFlatpickr };
