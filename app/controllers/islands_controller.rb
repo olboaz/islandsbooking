@@ -4,9 +4,19 @@ class IslandsController < ApplicationController
 
   def index
     if params[:name]
-      @islands = policy_scope(Island).where("lower(name) LIKE ?","%#{params[:name].downcase}%")
+      @islands = policy_scope(Island.geocoded).where("lower(name) LIKE ?","%#{params[:name].downcase}%")
     else
-      @islands = policy_scope(Island)
+      @islands = policy_scope(Island.geocoded)
+    end
+     # returns islands with coordinates
+
+    @markers = @islands.map do |island|
+      {
+        lat: island.latitude,
+        lng: island.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { island: island }),
+        image_url: helpers.asset_url('logo.png')
+      }
     end
   end
 

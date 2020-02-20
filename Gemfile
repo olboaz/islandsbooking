@@ -17,6 +17,7 @@ gem 'webpacker'
 gem 'devise'
 gem 'faker'
 gem 'pundit'
+gem 'geocoder'
 
 gem 'cloudinary', '~> 1.12.0'
 gem 'dotenv-rails', groups: [:development, :test]
