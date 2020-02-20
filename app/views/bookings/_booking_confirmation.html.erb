@@ -1,0 +1,20 @@
+<div class="modal fade" id="booking-confirmation" tabindex="-1" role="dialog" aria-labelledby="booking-confirmationTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="booking-confirmationLongTitle">You booking in <strong><%= @island.name.upcase %></strong> is pending!</h4>
+        <%# <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button> %>
+      </div>
+      <div class="modal-body">
+        <p>The owner, <strong><%= "#{@island.user.first_name} #{@island.user.last_name}"%></strong>, will address your request. Check your profile for updates!</p>
+        <p>You will be redirected to your profile very soon...</p>
+      </div>
+      <div class="modal-footer">
+        <%= link_to 'My profile', user_path(current_user), class: 'btn btn-primary' %>
+        <%# <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> %>
+      </div>
+    </div>
+  </div>
+</div>

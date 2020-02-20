@@ -11,7 +11,9 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.user = current_user
     if @booking.save
-      redirect_to current_user
+      respond_to do |format|
+        format.js
+      end
     else
       flash[:notice] = "The booking could not be completed."
       redirect_to island_path(params[:booking][:island_id])

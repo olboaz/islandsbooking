@@ -10,7 +10,7 @@
           <% end %>
         </div>
         <% if current_page?(edit_user_url) %>
-          <%= simple_form_for(user) do |f| %>
+          <%= simple_form_for(@user) do |f| %>
             <div class="mb-3">
               <span class="badge badge-primary">Email</span> <span class="text-muted"><%= @user.email %></span>
             </div>
