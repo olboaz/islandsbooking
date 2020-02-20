@@ -10,7 +10,7 @@
           <% end %>
         </div>
         <% if current_page?(edit_user_url) %>
-          <%= simple_form_for(user) do |f| %>
+          <%= simple_form_for(@user) do |f| %>
             <div class="mb-3">
               <span class="badge badge-primary">Email</span> <span class="text-muted"><%= @user.email %></span>
             </div>
@@ -22,10 +22,9 @@
         <% else %>
           <div>
             <ul class="list-unstyled">
-              <li><span class="badge badge-primary">Username</span> <%= @user.username %></li>
-              <li><span class="badge badge-primary">Email</span> <%= @user.email %></li>
-              <li><span class="badge badge-primary">First name</span> <%= @user.first_name %></li>
-              <li><span class="badge badge-primary">Last name</span> <%= @user.last_name %></li>
+              <li class="d-flex align-items-center"><i class="fas fa-user icon-user-profile"></i><%= @user.username %></li>
+              <li class="d-flex align-items-center"><i class="far fa-envelope icon-user-profile"></i>Email<%= @user.email %></li>
+              <li class="d-flex align-items-center"><i class="far fa-id-badge icon-user-profile"></i><%= "#{@user.first_name} #{@user.last_name}" %></li>
             </ul>
           </div>
         <% end %>
@@ -34,15 +33,68 @@
         <div class="bg-white p-3 my-3">
           <h2 class="mb-3">My bookings</h2>
           <div class="cards-booking">
-            <% @user.bookings.each do |booking| %>
+            <% @user.bookings.order(created_at: :desc).each do |booking| %>
+            <% if booking.island.photo.attached? %>
+              <div class="card-booking" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(<%= cl_image_path booking.island.photo.key%>);">
+            <% else %>
+              <div class="card-booking" style="color: black;">
+            <% end %>
+              <div class="card-booking-infos">
+                <div class="d-flex align-items-baseline">
+                  <h3><%= booking.island.name %></h3>
+                </div>
+                <ul class="list-unstyled">
+                  <li class="d-flex align-items-center"><i class="far fa-calendar-alt icon-user-profile"></i>From <%= "#{booking.start_date.strftime("%b %d, %Y")} until #{booking.end_date.strftime("%b %d, %Y")}" %></li>
+                  <li class="d-flex align-items-center"><i class="fas fa-bed icon-user-profile"></i> <%= (booking.end_date - booking.start_date).to_i %></li>
+                  <li class="d-flex align-items-center"><i class="far fa-money-bill-alt icon-user-profile"></i> <%= booking.total_price %> €</li>
+                  <% if booking.island.reviews.count == 0 %>
+                    <li><%= link_to "> Rate this island", new_island_review_path(booking.island) %></li>
+                  <% end %>
+                </ul>
+                <div>
+                  <% if booking.island.reviews.count != 0 %>
+                  <h5>
+                    Your comment on the island
+                  </h5>
+                  <ul class="list-unstyled">
+                    <li>Your rating : <%= icon('fas', 'star', class: 'star-rating') * (booking.island.reviews.first.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - booking.island.reviews.first.rating) %></li>
+                    <li>Your comment : <%= booking.island.reviews.first.content %></li>
+                  </ul>
+                  <% end %>
+                </div>
+              </div>
+              <% if booking.status == "pending" %>
+                  <i class="far fa-clock icon-top-right icon-yellow"></i>
+                <% elsif booking.status == "refused" %>
+                  <i class="fas fa-ban icon-top-right icon-red"></i>
+                <% else %>
+                  <i class="fas fa-check-circle icon-top-right icon-green"></i>
+              <% end %>
+            </div>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+
+      <% if @user.islands.any? %>
+        <div class="bg-white p-3 my-3">
+          <h2 class="mb-3">My islands</h2>
+          <div class="cards-booking">
+            <% @user.islands.each do |island| %>
             <div class="card-booking">
               <div class="card-booking-infos">
-                <h3><%= link_to booking.island.name, island_path(booking.island) %></h3>
+                <div class="d-flex align-items-baseline">
+                  <h3><%= island.name %></h3>
+                </div>
                 <ul class="list-unstyled">
-                  <li><span class="badge badge-primary">From</span> <%= booking.start_date.strftime("%b %d, %Y") %></li>
-                  <li><span class="badge badge-primary">Until</span> <%= booking.end_date.strftime("%b %d, %Y") %></li>
-                  <li><span class="badge badge-primary">Nb of nights</span> <%= (booking.end_date - booking.start_date).to_i %></li>
-                  <li><span class="badge badge-primary">Total price</span> <%= booking.total_price %> €</li>
+                  <li><span class="badge badge-primary">Place</span> <%= island.address.capitalize %></li>
+                  <li><span class="badge badge-primary">Number of guests</span> <%= island.number_of_guests %></li>
+                  <li><span class="badge badge-primary">Price (€ / day)</span> <%= island.price %></li>
+                  <% if island.description.nil? %>
+                    <li><span class="badge badge-primary">Description</span> <%= island.description %></li>
+                  <% else %>
+                    <li><span class="badge badge-primary">Description</span> <%= "#{island.description.first(100)}..." %></li>
+                  <% end  %>
                 </ul>
               </div>
             </div>
@@ -50,6 +102,7 @@
           </div>
         <% end %>
       </div>
+
     </div>
   </div>
 </div>

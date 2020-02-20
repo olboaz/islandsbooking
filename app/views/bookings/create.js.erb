@@ -1,0 +1,15 @@
+const displayModal = () => {
+  $('#booking-confirmation').modal({
+  keyboard: false,
+  show: true,
+  backdrop: 'static'
+});
+}
+
+setTimeout(displayModal, 1000);
+
+const redirectUser = () => {
+  window.location.href="<%= user_path(current_user) %>"
+}
+
+setTimeout(redirectUser, 3000);
