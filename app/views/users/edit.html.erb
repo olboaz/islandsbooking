@@ -1,1 +1,18 @@
-<%= render 'shared/userprofile' %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="my-3"><%= @user.username %></h1>
+
+      <%= render 'users/about_user' %>
+
+      <% if @user.bookings.any? %>
+        <%= render 'users/bookings_user' %>
+      <% end %>
+
+      <% if @user.islands.any? %>
+        <%= render 'users/islands' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
