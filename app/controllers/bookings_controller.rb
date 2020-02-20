@@ -15,8 +15,10 @@ class BookingsController < ApplicationController
         format.js
       end
     else
+      respond_to do |format|
+        format.js { render js: "window.location='#{island_path(params[:booking][:island_id])}'" }
+      end
       flash[:notice] = "The booking could not be completed."
-      redirect_to island_path(params[:booking][:island_id])
     end
   end
 
