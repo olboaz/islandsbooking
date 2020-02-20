@@ -58,17 +58,18 @@ page = Nokogiri::HTML(open(url))
 names = []
 areas = []
 countries = []
-page.search('tbody tr td[2] a[title]').each do |i|
+page.search('tbody tr td[2] a:nth-of-type(1)').each do |i|
    names << i.text.strip
 end
 page.search('tbody tr td[3] > text()').each do |i|
    areas << i.text.strip
 end
-page.search('tbody tr td[5] a[title]').each do |i|
+page.search('tbody tr td[5] a:nth-of-type(1)').each do |i|
    countries << i.text.strip
 end
 puts names[325]
-puts names[4]
+puts names[0]
+
 
 # json_url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exsentences=2&exintro&explaintext&redirects=1&titles=Greenland'
 # description_serialized = open(json_url).read
@@ -77,7 +78,20 @@ puts names[4]
 # puts description['extract']
 
 Island.destroy_all
-for i in (4..325)
+for i in (4..80)
+  Island.create!(
+    name: names[i+2],
+    price: (areas[i].delete(',').to_i / 1000.0),
+    user_id: u1.id,
+    country: countries[i-1],
+    description: "#{names[i+2]} is a beautiful island of #{areas[i].delete(',').to_i} km² in #{countries[i-1]}",
+    address: names[i+2],
+    aera: areas[i].delete(',').to_i,
+    number_of_guests: (areas[i].delete(',').to_i / 8)
+    )
+  puts "#{names[i+2]} - #{countries[i-1]}"
+end
+for i in (130..325)
   Island.create!(
     name: names[i],
     price: (areas[i].delete(',').to_i / 1000.0),
@@ -88,7 +102,7 @@ for i in (4..325)
     aera: areas[i].delete(',').to_i,
     number_of_guests: (areas[i].delete(',').to_i / 8)
     )
-  puts "#{names[i]}created !"
+  puts "#{names[i]} - #{countries[i]}"
 end
 
 # Booking.destroy_all
