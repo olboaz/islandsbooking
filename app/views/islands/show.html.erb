@@ -30,8 +30,8 @@
           <%= link_to "Delete", island_path(@island), method: :delete, data: {confirm: "Are you sure ?"} , class: 'btn btn-danger'%>
         <% end %>
         <h2>Description</h2>
-        <p><%= @island.description %></p>
-        <h2>Last reviews</h2>
+        <p><%= @island.description %> - </p>
+        <h2>Last reviews - Average rating : <%= @island.reviews.map(&:rating).sum / @island.reviews.count.to_f %></h2>
         <% @island.bookings.each do |booking| %>
           <% booking.reviews.each do |review| %>
             <p><b><%= review.user.username %> : </b><%= review.content %> - <%= icon('fas', 'star', class: 'star-rating') * (review.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - review.rating) %></p>
