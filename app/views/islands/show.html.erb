@@ -43,7 +43,7 @@
             <h2>Book this island!</h2>
             <%= form_with model: [current_user, @booking], local: true, id: 'booking-form' do |f| %>
               <div class="form-group my-3" id="booking-form-fields" data-unavailable="<%= @island.unavailable_dates.to_json %>">
-                <%= f.label :start_date, class: 'my-1'%>
+                <%= f.label :dates, class: 'my-1'%>
                 <%= f.date_field :start_date, value: Date.today, id: "start-date-booking", class: 'form-control my-1' %>
                 <%= f.label :number_of_nights, class: 'my-1' %>
                 <%= f.number_field :nb_of_nights, placeholder: 'Nb of nights', disabled: true, class: 'form-control my-1', id: "count-nights" %>
