@@ -7,6 +7,15 @@
     <%= image_tag "logo.png", style:"width:60px;" %>
   <% end %>
 
+<% if current_page?('/') %>
+<% else %>
+  <div class="form-group mr-auto my-2 col-lg-4 col-xs-4">
+    <%= form_with url: islands_path, method: "GET", local: true do |f| %>
+      <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: params[:name] %>
+    <% end %>
+  </div>
+<% end %>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

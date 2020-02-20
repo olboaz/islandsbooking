@@ -10,11 +10,13 @@ import { initAutocomplete } from '../plugins/init_autocomplete'
 import { initFlatpickr } from '../plugins/init_flatpickr';
 import $ from 'jquery';
 global.$ = jQuery;
+import { initStarRating } from '../plugins/init_star_rating';
 
 document.addEventListener('turbolinks:load', () => {
   loadDynamicBannerText();
   toggleDropdownMenu();
   initFlatpickr();
   initAutocomplete();
+  initStarRating();
 });
 
