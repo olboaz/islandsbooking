@@ -11,7 +11,11 @@
 <% else %>
   <div class="form-group mr-auto my-2 col-lg-4 col-xs-4">
     <%= form_with url: islands_path, method: "GET", local: true do |f| %>
-      <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: params[:name] %>
+      <% if params[:name].present? %>
+        <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: params[:name] %>
+      <% else %>
+        <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: "Find your island" %>
+      <% end %>
     <% end %>
   </div>
 <% end %>
