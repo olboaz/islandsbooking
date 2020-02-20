@@ -34,7 +34,11 @@
           <h2 class="mb-3">My bookings</h2>
           <div class="cards-booking">
             <% @user.bookings.order(created_at: :desc).each do |booking| %>
-            <div class="card-booking">
+            <% if booking.island.photo.attached? %>
+              <div class="card-booking" style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(<%= cl_image_path booking.island.photo.key%>);">
+            <% else %>
+              <div class="card-booking" style="color: black;">
+            <% end %>
               <div class="card-booking-infos">
                 <div class="d-flex align-items-baseline">
                   <h3><%= booking.island.name %></h3>
