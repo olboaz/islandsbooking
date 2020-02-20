@@ -66,6 +66,30 @@
           </div>
         <% end %>
       </div>
+
+      <% if @user.islands.any? %>
+        <div class="bg-white p-3 my-3">
+          <h2 class="mb-3">My islands</h2>
+          <div class="cards-booking">
+            <% @user.islands.each do |island| %>
+            <div class="card-booking">
+              <div class="card-booking-infos">
+                <div class="d-flex align-items-baseline">
+                  <h3><%= island.name %></h3>
+                </div>
+                <ul class="list-unstyled">
+                  <li><span class="badge badge-primary">Place</span> <%= island.address.capitalize %></li>
+                  <li><span class="badge badge-primary">Number of guests</span> <%= island.number_of_guests %></li>
+                  <li><span class="badge badge-primary">Price (€ / day)</span> <%= island.price %></li>
+                  <li><span class="badge badge-primary">Description</span> <%= "#{island.description.first(100)}..." %></li>
+                </ul>
+              </div>
+            </div>
+          <% end %>
+          </div>
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>
