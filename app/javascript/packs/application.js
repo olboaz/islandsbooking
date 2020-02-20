@@ -8,6 +8,9 @@ import { loadDynamicBannerText } from '../components/homebanner';
 import { toggleDropdownMenu } from "../components/navbar";
 import { initAutocomplete } from '../plugins/init_autocomplete'
 import { initFlatpickr } from '../plugins/init_flatpickr';
+import { initMapbox } from '../plugins/init_mapbox';
+import $ from 'jquery';
+global.$ = jQuery;
 import { initStarRating } from '../plugins/init_star_rating';
 
 document.addEventListener('turbolinks:load', () => {
@@ -15,6 +18,7 @@ document.addEventListener('turbolinks:load', () => {
   toggleDropdownMenu();
   initFlatpickr();
   initAutocomplete();
+  initMapbox();
   initStarRating();
 });
 
