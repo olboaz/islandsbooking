@@ -18,7 +18,7 @@ document.addEventListener('turbolinks:load', () => {
   toggleDropdownMenu();
   initFlatpickr();
   initAutocomplete();
-  initMapbox();
   initStarRating();
+  initMapbox();
 });
 
