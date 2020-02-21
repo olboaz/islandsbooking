@@ -4,11 +4,23 @@
   justify-content: space-evenly;
 }
 
-.main-container-item-white {
-  background: white;
-  padding: 20px;
-  margin: 10px;
+.main-container-item-white-info {
+    background: #00000091;
+    padding: 33px;
+    margin-top: 54px;
+    border-radius: 10px;
+    color: white;
+  }
+
+.main-container-item-white-booking {
+    background: white;
+    padding: 33px;
+    margin-top: 54px;
+    border-radius: 10px;
+    color: $secondary;
+    max-width: 359px;
 }
+
 
 @media (max-width: 576px) {
   .main-container-center {
