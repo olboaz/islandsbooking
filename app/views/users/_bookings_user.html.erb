@@ -1,14 +1,14 @@
-<div class="bg-white p-3 my-3">
+<div class="bg-white p-3 my-3" id="mybooking">
   <h2 class="mb-3">My bookings</h2>
   <div class="cards-booking">
-    
+
     <% @user.bookings.order(created_at: :desc).each do |booking| %>
 
       <% if booking.island.photo.attached? %>
         <div class="card-booking card-booking-bg my-3 " style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(<%= cl_image_path booking.island.photo.key%>);">
       <% else %>
         <div class="card-booking my-3 ">
-      <% end %> 
+      <% end %>
 
         <div class="card-booking-infos">
 
@@ -17,8 +17,8 @@
           <div class="card-container-info">
             <ul class="list-unstyled">
               <li class="d-flex align-items-center"><i class="far fa-calendar-alt icon-user-profile"></i>From <%= "#{booking.start_date.strftime("%b %d, %Y")} until #{booking.end_date.strftime("%b %d, %Y")}" %></li>
-              <li class="d-flex align-items-center"><i class="fas fa-bed icon-user-profile"></i> <%= (booking.end_date - booking.start_date).to_i %></li>
-              <li class="d-flex align-items-center"><i class="far fa-money-bill-alt icon-user-profile"></i> <%= booking.total_price %> €</li>
+              <li class="d-flex align-items-center"><i class="fas fa-user-friends icon-user-profile"></i> <%= (booking.end_date - booking.start_date).to_i %></li>
+              <li class="d-flex align-items-center"><i class="far fa-money-bill-alt icon-user-profile"></i>€ <%= booking.total_price %>K </li>
               <% if booking.reviews.count == 0 && booking.status == "accepted" %>
                 <li><%= link_to "> Rate this island", new_booking_review_path(booking) %></li>
               <% end %>
