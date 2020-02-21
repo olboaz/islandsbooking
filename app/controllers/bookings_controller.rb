@@ -22,6 +22,15 @@ class BookingsController < ApplicationController
     end
   end
 
+  def update
+    @booking = Booking.find(params[:id])
+    authorize @booking.user
+    if @booking.update(status: params[:status])
+      redirect_to user_path(@booking.island.user)
+      flash[:notice] = "The request has been updated!"
+    end
+  end
+
   private
 
   def booking_params

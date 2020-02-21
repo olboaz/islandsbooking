@@ -3,9 +3,9 @@ class Booking < ApplicationRecord
   belongs_to :user
   has_many :reviews, dependent: :destroy
 
-  STATUS = ['pending', 'refused', 'accepted']
+  STATUS = ['pending', 'refused', 'accepted'].freeze
   validates :status, inclusion: { in: STATUS }
-  validates :start_date, :end_date, presence: true, availability: true
+  validates :start_date, :end_date, presence: true, availability: true, on: :create
   validate :check_date_from_today, :end_date_after_start_date
   validates :total_price, presence: true, numericality: { greater_than: 0 }
   validates :island, :user, presence: true

@@ -1,0 +1,53 @@
+<div class="bg-white p-3 my-3">
+  <h2 class="mb-3">My bookings</h2>
+  <div class="cards-booking">
+    
+    <% @user.bookings.order(created_at: :desc).each do |booking| %>
+
+      <% if booking.island.photo.attached? %>
+        <div class="card-booking card-booking-bg my-3 " style="background-image: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), url(<%= cl_image_path booking.island.photo.key%>);">
+      <% else %>
+        <div class="card-booking my-3 ">
+      <% end %> 
+
+        <div class="card-booking-infos">
+
+          <h3><%= link_to booking.island.name, island_path(booking.island) %></h3>
+
+          <div class="card-container-info">
+            <ul class="list-unstyled">
+              <li class="d-flex align-items-center"><i class="far fa-calendar-alt icon-user-profile"></i>From <%= "#{booking.start_date.strftime("%b %d, %Y")} until #{booking.end_date.strftime("%b %d, %Y")}" %></li>
+              <li class="d-flex align-items-center"><i class="fas fa-bed icon-user-profile"></i> <%= (booking.end_date - booking.start_date).to_i %></li>
+              <li class="d-flex align-items-center"><i class="far fa-money-bill-alt icon-user-profile"></i> <%= booking.total_price %> €</li>
+              <% if booking.reviews.count == 0 && booking.status == "approved" %>
+                <li><%= link_to "> Rate this island", new_booking_review_path(booking) %></li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div>
+            <% if booking.reviews.count != 0 %>
+            <h5>
+              Your comment on the island
+            </h5>
+            <ul class="list-unstyled">
+              <li>Your rating : <%= icon('fas', 'star', class: 'star-rating') * (booking.reviews.first.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - booking.reviews.first.rating) %></li>
+              <li>Your comment : <%= booking.reviews.first.content %></li>
+            </ul>
+            <% end %>
+          </div>
+
+        </div>
+
+        <% if booking.status == "pending" %>
+          <i class="far fa-clock icon-top-right icon-yellow"></i>
+        <% elsif booking.status == "refused" %>
+          <i class="fas fa-ban icon-top-right icon-red"></i>
+        <% else %>
+          <i class="fas fa-check-circle icon-top-right icon-green"></i>
+        <% end %>
+
+      </div>
+    <% end %>
+  </div>
+</div>
