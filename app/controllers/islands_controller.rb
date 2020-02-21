@@ -4,9 +4,9 @@ class IslandsController < ApplicationController
 
   def index
     if params[:name]
-      sql_query = "country ILIKE :name OR name ILIKE :name"
+      sql_query = "country ILIKE :name OR name ILIKE :name AND latitude IS NOT NULL AND longitude IS NOT NULL"
       @islands = policy_scope(Island.geocoded).where(sql_query, name: "%#{params[:name]}%")
-    else
+          else
       @islands = policy_scope(Island.geocoded)
     end
      # returns islands with coordinates
