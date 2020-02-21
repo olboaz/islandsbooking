@@ -80,9 +80,16 @@
 }
 
 .card-country {
+position: absolute;
+    color: #a5a5a5;
+    top: 8px;
+    right:8px;
+}
+
+.card-square-km {
     position: absolute;
     color: #a5a5a5;
-    top: 130px;
+    top: 135px;
 }
 
 .island-image {

@@ -35,7 +35,7 @@
       <h1 class="text-center m-5 floating" style="color: #6C757D"><strong>Dive in !</strong></h1>
       <div class="cards">
         <% @islands.last(6).each do |island| %>
-          <%= link_to island_path(island) do %>
+                    <%= link_to island_path(island) do %>
             <% if island.photo.attached?%>
               <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.9)),
                 url('<%= cl_image_path island.photo.key, height: 300, width: 400, crop: :fill %>');">
@@ -44,8 +44,10 @@
                 url('https://source.unsplash.com/1600x900/?island-<%=island.name%>');">
             <% end %>
                 <h2 class="card-title"><%= island.name.capitalize %> </h2>
-                <p class="number_of_guests"><i class="fas fa-user-friends"></i> <%= island.number_of_guests %> </p>
-                <p class="price">€ <%= island.price.round %> </p>
+<!--                 <h5 class="card-country"><%= island.country.capitalize %></h5> -->
+                <h5 class="card-square-km"><%= island.aera %> km²</h5>
+                <p class="number_of_guests"><i class="fas fa-user-friends"></i><%= island.number_of_guests %></p>
+                <p class="price">€ <%= (island.price.*1.25).round(2) %>K </p>
               </div>
           <% end %>
         <% end %>
