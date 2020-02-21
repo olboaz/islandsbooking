@@ -2,30 +2,25 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-1"></div>
-      <div class="col-lg-5 col-xl-4" id="form">
-        <h1 class="mb-3" id="banner-typed-text"></h1>
-        <%= form_with url: islands_path, method: "GET", local: true do |f| %>
-          <form>
-            <div class="row form-group">
-              <div class="col">
-                <%= f.text_field :name, class: "form-control", id: "islandName", placeholder: "Search by country or island" %>
-              </div>
-            </div>
-<!--          <div class="row form-group">
-                <div class="col">
-                  <%#= f.label :"Check-in", for: "checkIn" %>
-                  <%#= f.date_field :start_date, :value => Time.now.strftime('%Y-%m-%d'), class: "form-control", id: "checkIn" %>
-                </div>
-                <div class="col">
-                  <%#= f.label :"Check-out", for: "checkOut" %>
-                  <%#= f.date_field :end_date, :value => Date.today+1, class: "form-control", id: "checkOut" %>
-                </div>
-              </div> -->
-              <%= f.submit "Search", class: "btn btn-primary float-right" %>
-            </div>
-          </form>
-        <% end %>
-      </div>
+        <div id="home-search">
+          <div id="cover">
+             <%= form_with url: islands_path, method: "GET", local: true do |f| %>
+                <form>
+                  <div class="tb">
+                      <%= f.text_field :name, class: "td", id: "islandName", placeholder: "Let's go" %>
+                  </div>
+                  <div id="s-cover">
+                    <%= f.submit "", class: "td" %>
+                  <button type="submit">
+                    <div id="s-circle"></div>
+                    <span></span>
+                  </button>
+                  </div>
+                </form>
+              <% end %>
+          </div>
+        </div>
+
     </div>
   </div>
 </div>
