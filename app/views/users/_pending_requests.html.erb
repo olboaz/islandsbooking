@@ -3,6 +3,9 @@
   <div class="cards-booking">
     
     <% @moderations.order(created_at: :desc).each do |booking| %>
+      <% if booking.user == current_user %>
+        <p>You have no pending requests.</p>
+      <% else %>
         <div class="card-booking my-3 ">
           <div class="card-booking-infos">
             <h3>Request from <%= link_to booking.user.username, user_path(booking.user) %> to stay in <%= booking.island.name %></h3>
@@ -27,6 +30,7 @@
             <i class="fas fa-check-circle icon-top-right icon-green"></i>
           <% end %>
         </div>
+      <% end %>
     <% end %>
   </div>
 </div>
