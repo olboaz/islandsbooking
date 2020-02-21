@@ -5,7 +5,8 @@ const loadDynamicBannerText = () => {
   if (homeText) {
     new Typed('#banner-typed-text', {
       strings: ["Book your dream island"],
-      typeSpeed: 50
+      typeSpeed: 50,
+      loop: true
     });
   }
 }
