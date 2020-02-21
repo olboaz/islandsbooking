@@ -14,7 +14,7 @@
       <% if params[:name].present? %>
         <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: params[:name] %>
       <% else %>
-        <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: "Find your island" %>
+        <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: "Search by country or island" %>
       <% end %>
     <% end %>
   </div>
