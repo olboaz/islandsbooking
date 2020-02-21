@@ -25,7 +25,8 @@
             <% average = @island.reviews.map(&:rating).sum / @island.reviews.count.to_f %>
             <% if !average.nan? || average.nil? %>
             <% average = (average * 2.0).round / 2.0 %>
-              <h2>Last reviews - Average rating <%= icon('fas', 'star', class: 'star-rating') * (average) %><% if average.round != average  %><%= icon('fas', 'star-half-alt', class: 'star-rating') %><% end %><%= icon('far', 'star', class: 'star-rating') * (5 - average) %></h2>
+            <h2 style="position:absolute;top:95px;right:66px;"><%= icon('fas', 'star', class: 'star-rating') * (average) %><% if average.round != average  %><%= icon('fas', 'star-half-alt', class: 'star-rating') %><% end %><%= icon('far', 'star', class: 'star-rating') * (5 - average) %></h2>
+              <h2>Last reviews</h2>
               <% @island.bookings.each do |booking| %>
                 <% booking.reviews.each do |review| %>
                   <p><b><%= review.user.username %> : </b><%= review.content %> - <%= icon('fas', 'star', class: 'star-rating') * (review.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - review.rating) %></p>
