@@ -8,7 +8,7 @@
       <% if @user == current_user %>
         <% if @moderations.any? %>
           <%= render 'users/pending_requests' %>
-        <% end %>
+        <% end %> 
       <% end %>
 
       <% if @user.bookings.any? %>
