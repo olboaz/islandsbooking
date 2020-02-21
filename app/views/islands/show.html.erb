@@ -12,7 +12,7 @@
       <p class="d-flex align-items-center"><i class="fas fa-globe-europe"></i> <%= @island.country %></p>
       <p class="d-flex align-items-center"><i class="fas fa-chart-area"></i> <%= @island.aera %> km²</p>
       <p class="d-flex align-items-center"><i class="fas fa-user-friends icon-user-profile"></i> <%= @island.number_of_guests %></p>
-      <p data-price=<%= @island.price%> id="price" class="d-flex align-items-center"><i class="far fa-money-bill-alt"></i> <%= @island.price %></p>
+      <p data-price=<%= @island.price%> id="price" class="d-flex align-items-center"><i class="far fa-money-bill-alt"></i> € <%= @island.price %>K</p>
       <p class="d-flex align-items-center"><i class="fas fa-user-shield"></i> <%= @island.user.username %></p>
       <% if policy(@island).edit? %>
         <%= link_to "Update", edit_island_path(@island), class: 'btn btn-primary' %>
@@ -47,25 +47,27 @@
   </div>
 </div>
 
-<div class="container my-3 bg-white p-3">
-  <% if !@average.nan? || @average.nil? %>
-    <% @average = (@average * 2.0).round / 2.0 %>
-      <h3>Last reviews - Average rating 
-        <%= icon('fas', 'star', class: 'star-rating') * (@average) %>
-        <% if @average.round != @average  %>
-          <%= icon('fas', 'star-half-alt', class: 'star-rating') %>
+<% if @island.reviews.any? %>
+  <div class="container my-3 bg-white p-3">
+    <% if !@average.nan? || @average.nil? %>
+      <% @average = (@average * 2.0).round / 2.0 %>
+        <h3>Last reviews - Average rating 
+          <%= icon('fas', 'star', class: 'star-rating') * (@average) %>
+          <% if @average.round != @average  %>
+            <%= icon('fas', 'star-half-alt', class: 'star-rating') %>
+          <% end %>
+          <%= icon('far', 'star', class: 'star-rating') * (5 - @average) %>
+        </h3>
+        <% @island.bookings.each do |booking| %>
+          <% booking.reviews.each do |review| %>
+            <p>
+              <b><%= review.user.username %> : </b>
+              <%= review.content %> - <%= icon('fas', 'star', class: 'star-rating') * (review.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - review.rating) %>
+            </p>
+          <% end %>
         <% end %>
-        <%= icon('far', 'star', class: 'star-rating') * (5 - @average) %>
-      </h3>
-      <% @island.bookings.each do |booking| %>
-        <% booking.reviews.each do |review| %>
-          <p>
-            <b><%= review.user.username %> : </b>
-            <%= review.content %> - <%= icon('fas', 'star', class: 'star-rating') * (review.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - review.rating) %>
-          </p>
-        <% end %>
-      <% end %>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>
 
 <%= render 'bookings/booking_confirmation', island: @island %>
