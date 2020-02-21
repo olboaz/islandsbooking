@@ -4,9 +4,11 @@
       <h1 class="my-3"><%= @user.username %></h1>
 
       <%= render 'users/about_user' %>
-
-      <% if @moderations.any? %>
-        <%= render 'users/pending_requests' %>
+    
+      <% if @user == current_user %>
+        <% if @moderations.any? %>
+          <%= render 'users/pending_requests' %>
+        <% end %>
       <% end %>
 
       <% if @user.bookings.any? %>

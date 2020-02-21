@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-4">
+      <h1>How was your stay at <%= @booking.island.name %> ?</h1>
       <%= simple_form_for [@booking, @review] do |f| %>
         <%= f.input :content %>
         <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience" %>

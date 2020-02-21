@@ -1,2 +1,15 @@
-<h2><%= island.name %></h2>
-<p><%= island.address %></p>
+         <%= link_to island_path(island) do %>
+            <% if island.photo.attached?%>
+              <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.9)),
+                url('<%= cl_image_path island.photo.key, height: 300, width: 400, crop: :fill %>');">
+            <% else %>
+              <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.9)),
+                url('https://source.unsplash.com/1600x900/?island-<%=island.name%>');">
+            <% end %>
+                <h2 class="card-title"><%= island.name.capitalize %> </h2>
+<!--                 <h5 class="card-country"><%= island.country.capitalize %></h5> -->
+                <h5 class="card-square-km"><%= island.aera %> km²</h5>
+                <p class="number_of_guests"><i class="fas fa-user-friends"></i><%= island.number_of_guests %></p>
+                <p class="price">€ <%= (island.price.*1.25).round(2) %>K </p>
+              </div>
+          <% end %>

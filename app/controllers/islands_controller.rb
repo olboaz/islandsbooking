@@ -4,7 +4,8 @@ class IslandsController < ApplicationController
 
   def index
     if params[:name]
-      @islands = policy_scope(Island.geocoded).where("lower(country) LIKE ?","%#{params[:name].downcase}%")
+      sql_query = "country ILIKE :name OR name ILIKE :name"
+      @islands = policy_scope(Island.geocoded).where(sql_query, name: "%#{params[:name]}%")
     else
       @islands = policy_scope(Island.geocoded)
     end

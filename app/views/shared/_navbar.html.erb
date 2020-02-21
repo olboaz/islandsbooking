@@ -1,7 +1,9 @@
-<% if current_page?('/') %>
+<% if current_page?(root_path) %>
   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar" style="background-color:#00b0be">
+<% elsif current_page?(islands_path) %>
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar" style="position:fixed; z-index: 5;top:0px;background-color:#F4F4F4; border-bottom: solid 1px #e6e6e6;">
 <% else %>
-  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar">
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar" style="background-color:#F4F4F4; border-bottom: solid 1px #e6e6e6;">
 <% end %>
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png", style:"width:60px;" %>
@@ -14,7 +16,7 @@
       <% if params[:name].present? %>
         <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: params[:name] %>
       <% else %>
-        <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: "Find your island" %>
+        <%= f.text_field :name, class: "form-control rounded search", id: "islandName", placeholder: "Search by country or island" %>
       <% end %>
     <% end %>
   </div>
@@ -30,16 +32,20 @@
       <% if user_signed_in? %>
       <!--
         <li class="nav-item">
-          <%= link_to "€ EUR", "#", class: "nav-link" %>
+          <%#= link_to "€ EUR", "#", class: "nav-link" %>
         </li>
       -->
         <li class="nav-item">
           <% if policy(Island).create? %>
-            <%= link_to "Add your island", new_island_path, class: "nav-link btn btn-success mt-2 " %>
+            <% if current_page?('/') %>
+              <%= link_to "Add your island", new_island_path, class: "nav-link" %>
+            <% else %>
+              <%= link_to "Add your island", new_island_path, class: "nav-link", style:"color:rgba(0, 0, 0, 0.5) !important" %>
+            <% end %>
           <% end %>
         </li>
         <li class="nav-item dropdown ml-4">
-          <%= image_tag "profile.png", class: "avatar dropdown-toggle", style:"width:60px;height:60px;", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= image_tag "profile.png", class: "avatar dropdown-toggle", style:"height:50px; width: auto", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "My profile", user_path(current_user), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
@@ -48,7 +54,7 @@
       <% else %>
       <!--
         <li class="nav-item">
-          <%= link_to "€ EUR", "#", class: "nav-link mr-3" %>
+          <%#= link_to "€ EUR", "#", class: "nav-link mr-3" %>
         </li>
       -->
         <li class="nav-item" id="login">
@@ -59,7 +65,7 @@
           <% end %>
         </li>
         <li class="nav-item" id="signup">
-          <%= link_to "Sign up", new_user_registration_path, class: "nav-link btn btn-success ml-3" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "nav-link ml-3" %>
         </li>
       <% end %>
     </ul>
