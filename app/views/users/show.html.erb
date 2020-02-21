@@ -5,6 +5,10 @@
 
       <%= render 'users/about_user' %>
 
+      <% if @moderations.any? %>
+        <%= render 'users/pending_requests' %>
+      <% end %>
+
       <% if @user.bookings.any? %>
         <%= render 'users/bookings_user' %>
       <% end %>

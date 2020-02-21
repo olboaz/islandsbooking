@@ -1,0 +1,32 @@
+<div class="bg-white p-3 my-3">
+  <h2 class="mb-3">Pending requests</h2>
+  <div class="cards-booking">
+    
+    <% @moderations.order(created_at: :desc).each do |booking| %>
+        <div class="card-booking my-3 ">
+          <div class="card-booking-infos">
+            <h3>Request from <%= link_to booking.user.username, user_path(booking.user) %> to stay in <%= booking.island.name %></h3>
+            <div class="card-container-info">
+              <ul class="list-unstyled">
+                <li class="d-flex align-items-center"><i class="far fa-calendar-alt icon-user-profile"></i>From <%= "#{booking.start_date.strftime("%b %d, %Y")} until #{booking.end_date.strftime("%b %d, %Y")}" %></li>
+                <li class="d-flex align-items-center"><i class="fas fa-bed icon-user-profile"></i> <%= (booking.end_date - booking.start_date).to_i %></li>
+                <li class="d-flex align-items-center"><i class="far fa-money-bill-alt icon-user-profile"></i> <%= booking.total_price %> €</li>
+              </ul>
+              <%= form_with url: user_booking_path(booking.user, booking), method: :patch, local: true do |f| %>
+                <%= f.label :status %>
+                <%= f.select(:status, options_for_select(Booking::STATUS, booking.status)) %>
+                <%= f.submit 'Validate', class: 'btn btn-primary'  %>
+              <% end %>
+            </div>
+        </div>
+          <% if booking.status == "pending" %>
+            <i class="far fa-clock icon-top-right icon-yellow"></i>
+          <% elsif booking.status == "refused" %>
+            <i class="fas fa-ban icon-top-right icon-red"></i>
+          <% else %>
+            <i class="fas fa-check-circle icon-top-right icon-green"></i>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
