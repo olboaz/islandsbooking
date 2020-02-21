@@ -10,6 +10,28 @@
     align-items: center;
 }
 
+#show-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 80px 0;
+  height: 100vh;
+  #form {
+    background: white;
+    padding: 2em 3em;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.12) !important;
+    border-radius: 8px;
+    input {
+      font-weight: bold;
+    }
+  }
+}
+
+#show-banner h1 {
+  font-size:48px;
+  color:white;
+  text-shadow: 1px 1px 15px black;
+}
+
 #home-banner {
   background-size: cover;
   background-position: center;
