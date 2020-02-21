@@ -24,6 +24,29 @@
   }
 }
 
+.island-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.island-booking-form {
+  background: white;
+  padding: 40px;
+  border-radius: 4px;
+}
+
+.island-information {
+  padding: 40px;
+  background: rgba(0,0,0,0.8);
+  border-radius: 4px;
+  color: white;
+  width: 400px;
+  i {
+    width: 40px;
+  }
+}
+
 #mybooking {
   background-color: transparent!important;
 }
@@ -36,6 +59,16 @@
 }
 
 // Small devices (landscape phones, 576px and up)
+@media (max-width: 762px) {
+  .island-items {
+    flex-direction: column;
+  }
+  .island-information {
+    width: 90%;
+    margin: 24px;
+  }
+}
+
 @media (max-width: 576px) {
   .cards {
     grid-template-columns: 1fr;

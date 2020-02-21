@@ -25,6 +25,8 @@ class IslandsController < ApplicationController
     @island = Island.find(params[:id])
     authorize @island
     @booking = Booking.new
+    @average = @island.reviews.map(&:rating).sum / @island.reviews.count.to_f
+
   end
 
   def new
