@@ -14,11 +14,11 @@ global.$ = jQuery;
 import { initStarRating } from '../plugins/init_star_rating';
 
 document.addEventListener('turbolinks:load', () => {
+  initMapbox();
   loadDynamicBannerText();
   toggleDropdownMenu();
   initFlatpickr();
   initAutocomplete();
   initStarRating();
-  initMapbox();
 });
 
