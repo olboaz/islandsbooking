@@ -8,8 +8,8 @@
             <% end %>
                 <h2 class="card-title"><%= island.name.capitalize %> </h2>
 <!--                 <h5 class="card-country"><%= island.country.capitalize %></h5> -->
-                <h5 class="card-square-km"><%= island.aera %> km²</h5>
-                <p class="number_of_guests"><i class="fas fa-user-friends"></i><%= island.number_of_guests %></p>
+                <h5 class="card-square-km pt-1"><%= island.aera %> km²</h5>
+                <p class="number_of_guests"><i class="fas fa-user-friends"></i> <%= island.number_of_guests %></p>
                 <p class="price">€ <%= (island.price.*1.25).round(2) %>K </p>
               </div>
           <% end %>

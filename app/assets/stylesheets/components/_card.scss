@@ -1,19 +1,23 @@
 .cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 11px;
 }
 
 .cards-booking {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   .card-booking {
+    background-color: white!important;
     color: black;
     background-size: cover;
-    padding: 10px;
+    padding: 14px;
     box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
     border-radius: 3px;
     position: relative;
+    margin: 8px;
     &-bg {
       color: white;
     }
@@ -41,6 +45,10 @@
   i {
     width: 40px;
   }
+}
+
+#mybooking {
+  background-color: transparent!important;
 }
 
 // Smallest device
@@ -84,14 +92,14 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   .cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
