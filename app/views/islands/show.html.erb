@@ -6,61 +6,55 @@
   <div id="show-banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
     url('https://source.unsplash.com/1600x900/?island-<%=@island.name%>')">
 <% end %>
-    <div class="row m-0 dflex justify-content-center mt-5">
-      <div class="col-6 mt-4">
-        <div class="container main-container-item-white-info" >
-            <h1><%= @island.name.capitalize %></h1>
-            <p><span class="badge badge-primary">Country</span> <%= @island.country %></p>
-            <p><span class="badge badge-primary">Aera</span> <%= @island.aera %> km²</p>
-            <p><span class="badge badge-primary">Number of guests</span> <%= @island.number_of_guests %></p>
-            <p data-price=<%= @island.price%> id="price"><span class="badge badge-primary">Price ( € / day)</span> <%= @island.price %></p>
-            <p><span class="badge badge-primary">Host</span> <%= @island.user.username %></p>
-            <% if policy(@island).edit? %>
-              <%= link_to "Update", edit_island_path(@island), class: 'btn btn-primary' %>
-            <% end %>
-            <% if policy(@island).destroy? %>
-              <%= link_to "Delete", island_path(@island), method: :delete, data: {confirm: "Are you sure ?"} , class: 'btn btn-danger'%>
-            <% end %>
-            <p><%= @island.description %> - </p>
-            <% average = @island.reviews.map(&:rating).sum / @island.reviews.count.to_f %>
-            <% if !average.nan? || average.nil? %>
-            <% average = (average * 2.0).round / 2.0 %>
-              <h2>Last reviews - Average rating <%= icon('fas', 'star', class: 'star-rating') * (average) %><% if average.round != average  %><%= icon('fas', 'star-half-alt', class: 'star-rating') %><% end %><%= icon('far', 'star', class: 'star-rating') * (5 - average) %></h2>
-              <% @island.bookings.each do |booking| %>
-                <% booking.reviews.each do |review| %>
-                  <p><b><%= review.user.username %> : </b><%= review.content %> - <%= icon('fas', 'star', class: 'star-rating') * (review.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - review.rating) %></p>
-                <% end %>
-              <% end %>
-            <% end %>
-        </div>
-      </div>
-      <div class="col-1">
-      </div>
-      <div class="col-3">
-          <% unless policy(@island).update? %>
-            <div class="container main-container-item-white-booking">
-                <% if current_user %>
-                  <h2>Book this island!</h2>
-                  <%= form_with model: [current_user, @booking], id: 'booking-form' do |f| %>
-                    <div class="form-group my-3" id="booking-form-fields" data-unavailable="<%= @island.unavailable_dates.to_json %>">
-                      <%= f.label :dates, class: 'my-1'%>
-                      <%= f.date_field :start_date, value: Date.today, id: "start-date-booking", class: 'form-control my-1', placeholder: 'Choose your date'%>
-                      <%= f.label :number_of_nights, class: 'my-1' %>
-                      <%= f.number_field :nb_of_nights, placeholder: 'Nb of nights', disabled: true, class: 'form-control my-1', id: "count-nights" %>
-                      <%= f.hidden_field :island_id, value: params[:id] %>
-                      <%= f.label :total_price, class: 'my-1' %>
-                      <%= f.text_field :total_price, id: 'total-price', readonly: true, value: 0, class: 'form-control my-1' %>
-                      <%= f.submit 'Book', class: 'btn btn-primary my-3', id: 'booking-submit', disabled: true%>
-                    </div>
-                  <% end %>
-                <% else %>
-                  <%= link_to "Please log in to book", new_island_booking_path(@island), class: "btn btn-primary" %>
-                <% end %>
+  <div class="island-items">
+    <div class="island-information
+    ">
+      <h1 class="mb-5"><%= @island.name.capitalize %></h1>
+      <p class="d-flex align-items-center"><i class="fas fa-globe-europe"></i> <%= @island.country %></p>
+      <p class="d-flex align-items-center"><i class="fas fa-chart-area"></i> <%= @island.aera %> km²</p>
+      <p class="d-flex align-items-center"><i class="fas fa-bed icon-user-profile"></i> <%= @island.number_of_guests %></p>
+      <p data-price=<%= @island.price%> id="price" class="d-flex align-items-center"><i class="far fa-money-bill-alt"></i> <%= @island.price %></p>
+      <p class="d-flex align-items-center"><i class="fas fa-user-shield"></i> <%= @island.user.username %></p>
+      <% if policy(@island).edit? %>
+        <%= link_to "Update", edit_island_path(@island), class: 'btn btn-primary' %>
+      <% end %>
+      <% if policy(@island).destroy? %>
+        <%= link_to "Delete", island_path(@island), method: :delete, data: {confirm: "Are you sure ?"} , class: 'btn btn-danger'%>
+      <% end %>
+      <p><%= @island.description %> - </p>
+      <% average = @island.reviews.map(&:rating).sum / @island.reviews.count.to_f %>
+      <% if !average.nan? || average.nil? %>
+      <% average = (average * 2.0).round / 2.0 %>
+        <h2>Last reviews - Average rating <%= icon('fas', 'star', class: 'star-rating') * (average) %><% if average.round != average  %><%= icon('fas', 'star-half-alt', class: 'star-rating') %><% end %><%= icon('far', 'star', class: 'star-rating') * (5 - average) %></h2>
+        <% @island.bookings.each do |booking| %>
+          <% booking.reviews.each do |review| %>
+            <p><b><%= review.user.username %> : </b><%= review.content %> - <%= icon('fas', 'star', class: 'star-rating') * (review.rating) %><%= icon('far', 'star', class: 'star-rating') * (5 - review.rating) %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+  <% unless policy(@island).update? %>
+    <div class="island-booking-form">
+        <% if current_user %>
+          <h2>Book this island!</h2>
+          <%= form_with model: [current_user, @booking], id: 'booking-form' do |f| %>
+            <div class="form-group my-3" id="booking-form-fields" data-unavailable="<%= @island.unavailable_dates.to_json %>">
+              <%= f.label :dates, class: 'my-1'%>
+              <%= f.date_field :start_date, value: Date.today, id: "start-date-booking", class: 'form-control my-1', placeholder: 'Choose your date'%>
+              <%= f.label :number_of_nights, class: 'my-1' %>
+              <%= f.number_field :nb_of_nights, placeholder: 'Nb of nights', disabled: true, class: 'form-control my-1', id: "count-nights" %>
+              <%= f.hidden_field :island_id, value: params[:id] %>
+              <%= f.label :total_price, class: 'my-1' %>
+              <%= f.text_field :total_price, id: 'total-price', readonly: true, value: 0, class: 'form-control my-1' %>
+              <%= f.submit 'Book', class: 'btn btn-primary my-3', id: 'booking-submit', disabled: true%>
             </div>
           <% end %>
-      </div>
-
+        <% else %>
+          <%= link_to "Please log in to book", new_island_booking_path(@island), class: "btn btn-primary" %>
+        <% end %>
     </div>
-  </div>
+  <% end %>
+</div>
 
 <%= render 'bookings/booking_confirmation', island: @island %>
