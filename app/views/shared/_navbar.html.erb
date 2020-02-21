@@ -1,7 +1,9 @@
-<% if current_page?('/') %>
+<% if current_page?(root_path) %>
   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar" style="background-color:#00b0be">
-<% else %>
+<% elsif current_page?(islands_path) %>
   <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar" style="position:fixed; z-index: 5;top:0px;background-color:#F4F4F4; border-bottom: solid 1px #e6e6e6;">
+<% else %>
+  <div class="navbar navbar-expand-sm navbar-light navbar-lewagon" id="navbar" style="background-color:#F4F4F4; border-bottom: solid 1px #e6e6e6;">
 <% end %>
   <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo.png", style:"width:60px;" %>
