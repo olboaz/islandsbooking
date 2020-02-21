@@ -19,7 +19,7 @@
               <li class="d-flex align-items-center"><i class="far fa-calendar-alt icon-user-profile"></i>From <%= "#{booking.start_date.strftime("%b %d, %Y")} until #{booking.end_date.strftime("%b %d, %Y")}" %></li>
               <li class="d-flex align-items-center"><i class="fas fa-bed icon-user-profile"></i> <%= (booking.end_date - booking.start_date).to_i %></li>
               <li class="d-flex align-items-center"><i class="far fa-money-bill-alt icon-user-profile"></i> <%= booking.total_price %> €</li>
-              <% if booking.reviews.count == 0 && booking.status == "approved" %>
+              <% if booking.reviews.count == 0 && booking.status == "accepted" %>
                 <li><%= link_to "> Rate this island", new_booking_review_path(booking) %></li>
               <% end %>
             </ul>

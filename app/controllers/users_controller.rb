@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @moderations = Booking.joins(:island).where("islands.user_id = ? AND bookings.status = ?", User.last.id, 'pending')
+    @moderations = Booking.joins(:island).where("islands.user_id = ? AND bookings.status = ?", current_user, 'pending')
     authorize @user
   end
   def edit
