@@ -10,7 +10,7 @@
     "actioncable": "^5.2.4-2",
     "bootstrap": "^4.4.1",
     "flatpickr": "^4.6.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-bar-rating": "^1.2.2",
     "mapbox-gl": "^1.7.0",
     "places.js": "^1.18.1",

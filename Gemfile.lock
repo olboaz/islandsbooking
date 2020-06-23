@@ -133,7 +133,7 @@ GEM
       pry (~> 0.10)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    puma (4.3.3)
+    puma (4.3.5)
       nio4r (~> 2.0)
     pundit (2.1.0)
       activesupport (>= 3.0.0)
@@ -226,8 +226,13 @@ GEM
       railties (>= 4.2)
     websocket-driver (0.7.1)
       websocket-extensions (>= 0.1.0)
+<<<<<<< HEAD
     websocket-extensions (0.1.4)
     zeitwerk (2.3.0)
+=======
+    websocket-extensions (0.1.5)
+    zeitwerk (2.2.2)
+>>>>>>> 7ea12d9a9e4e381ef6c541e2bdbf5e1772b952cf
 
 PLATFORMS
   ruby
